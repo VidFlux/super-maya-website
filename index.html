@@ -1,14 +1,831 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Super Maya - Coming Soon</title>
-  </head>
-  <body>
-    <img src="/background.gif" alt="background" class="bg-img" />
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supermaya – Creative OS for D2C Marketers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <style>
+    @font-face {
+      font-family: 'Syncopate';
+      src: url('./Syncopate-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Syncopate';
+      src: url('./Syncopate-Regular.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Teachers';
+      src: url('./Teachers-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Teachers','Inter',sans-serif}
+    h1, h2 {font-family:'Syncopate','Inter',sans-serif}
+    h3, h4, h5, h6 {font-family:'Teachers','Inter',sans-serif}
+    .reveal{opacity:0;transform:translateY(24px)}
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.5rem}
+    .gradient-bg{background:radial-gradient(circle at top left,#1A1B2D 0%,#0F141F 60%,#0B0E18 100%)}
+    .btn-primary{background:#9B51E0;color:#fff;padding:.75rem 1.5rem;border-radius:9999px;font-weight:600;transition:.2s}
+    .btn-primary:hover{background:#8E44AD}
+    .gold{color:#d1b583}
+    .pattern-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .pattern-svg{position:absolute;mix-blend-mode:screen;opacity:.12}
+    .syncopate-heading{font-family:'Syncopate','Inter',sans-serif}
+    .syncopate-bold-heading{font-family:'Syncopate','Inter',sans-serif;font-weight:bold}
+    .teachers-text{font-family:'Teachers','Inter',sans-serif}
+    @media(min-width:768px){.pattern-svg{opacity:.1}}
+    .tab-btn{padding:.4rem .8rem;border-radius:9999px;background:rgba(255,255,255,.08);color:#ccc;transition:.15s}
+    .tab-btn.active{background:#9B51E0;color:#fff}
+    video::-webkit-media-controls-download-button { display: none !important; }
+    video::-webkit-media-controls-picture-in-picture-button { display: none !important; }
+    video::-moz-media-controls-download-button { display: none !important; }
+    video::-moz-media-controls-picture-in-picture-button { display: none !important; }
+    video::-webkit-media-controls-overflow-menu-button { display: none !important; }
+    video::-webkit-media-controls-menu-button { display: none !important; }
+    video::-webkit-media-controls { 
+      overflow: hidden !important;
+    }
+    video::-webkit-media-controls:not(:root):not(:-webkit-full-screen) {
+      display: none !important;
+    }
+    video::-webkit-media-controls-panel { 
+      background: transparent !important;
+    }
+    video::cue {
+      background: transparent !important;
+    }
+  </style>
+</head>
+<body class="gradient-bg text-white selection:bg-purple-400/60">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-[#1A1B2D]/80 backdrop-blur border-b border-purple-700/30">
+  <div class="max-w-7xl mx-auto py-4 px-6 flex justify-center">
+    <span class="text-xl font-bold tracking-wide syncopate-heading">SUPERMAYA</span>
+  </div>
+</header>
+
+<section id="hero" class="min-h-screen pt-40 pb-24 px-6 md:px-12 lg:px-20 flex flex-col items-center text-center relative overflow-hidden">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg -top-32 -left-40 w-[160vw]" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="g1" cx="15%" cy="40%" r="80%">
+          <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.9"/>
+          <stop offset="60%" stop-color="#9B51E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".35">
+        <path d="M30 120 C140 60 220 200 340 140 S540 40 640 160 820 220 940 120"/>
+        <path d="M-20 300 C120 260 220 420 360 360 S600 240 760 360 980 420 1180 300"/>
+        <path d="M60 520 C200 500 300 560 420 520 S660 460 820 520 1040 560 1200 480"/>
+      </g>
+      <circle cx="280" cy="240" r="220" fill="url(#g1)"/>
+      <g fill="#9B51E0" opacity=".4">
+        <circle cx="960" cy="90" r="30"/>
+        <circle cx="1040" cy="160" r="18"/>
+        <circle cx="880" cy="180" r="22"/>
+      </g>
+    </svg>
+  </div>
+  <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 reveal syncopate-bold-heading">AI OPERATING SYSTEM FOR <span class="text-purple-400">MARKETERS</span><br class="hidden md:block"/></h1>
+  <p class="text-lg md:text-xl text-slate-300 max-w-2xl mb-10 reveal teachers-text">Supermaya turns your brief into on-brand, cinematic creatives that optimise themselves. Built for D2C marketers who live in ROAS, CAC and creative fatigue.</p>
+  <a href="https://calendly.com/sudhansu-supermaya/30min" class="btn-primary reveal only-cta">Get Early Access</a>
+  <div class="mt-16 reveal max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6" id="impact-cards">
+    <div class="card text-center py-6"><div class="text-3xl mb-2">💸</div><p class="text-xl font-bold">−98%</p><p class="text-slate-300 text-sm">production cost</p></div>
+    <div class="card text-center py-6"><div class="text-3xl mb-2">⚡</div><p class="text-xl font-bold">10–60×</p><p class="text-slate-300 text-sm">faster to launch</p></div>
+    <div class="card text-center py-6"><div class="text-3xl mb-2">📈</div><p class="text-xl font-bold">+2–3×</p><p class="text-slate-300 text-sm">lift in CTR/ROAS</p></div>
+  </div>
+</section>
+
+<!-- SUPERMAYA DEMO VIDEO -->
+<section id="demo-video" class="py-24 px-6 md:px-12 lg:px-20 reveal relative overflow-hidden">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg top-[-15vh] left-[-15vw] w-[130vw]" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="1" stroke-opacity=".06">
+        <path d="M0 100 L1200 100"/>
+        <path d="M0 200 L1200 200"/>
+        <path d="M0 300 L1200 300"/>
+      </g>
+      <g fill="#4F46E5" opacity=".04">
+        <circle cx="200" cy="150" r="30"/>
+        <circle cx="1000" cy="250" r="25"/>
+        <circle cx="600" cy="100" r="20"/>
+      </g>
+    </svg>
+  </div>
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">SEE SUPERMAYA IN <span class="text-purple-400">ACTION</span></h2>
+      <p class="text-slate-300 text-lg max-w-3xl mx-auto">
+        Watch how our AI transforms simple briefs into cinematic, brand-ready video content in minutes, not weeks.
+      </p>
+    </div>
+
+    <div class="max-w-5xl mx-auto">
+      <div class="relative rounded-xl overflow-hidden shadow-2xl group">
+        <video 
+          class="w-full h-auto object-cover cursor-pointer" 
+          preload="metadata"
+          disablepictureinpicture
+          controlslist="nodownload nofullscreen noremoteplayback"
+          onclick="this.paused ? this.play() : this.pause()">
+          <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/supermaya+draft.mp4#t=1" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        
+        <!-- Play Button Overlay -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <div class="bg-black/50 rounded-full p-4 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').paused ? this.closest('.group').querySelector('video').play() : this.closest('.group').querySelector('video').pause()">
+            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Fullscreen Button -->
+        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <div class="bg-black/50 rounded-full p-2 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Video Info Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+          <h3 class="text-white font-semibold text-lg mb-2">Supermaya Demo</h3>
+        </div>
+      </div>
+      
+      <div class="text-center mt-8">
+        <p class="text-slate-400 text-sm mb-4">Experience the future of creative production</p>
+        <a href="#cta" class="btn-primary only-cta">Try Supermaya Today</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="problem" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg top-0 right-[-20vw] w-[120vw] rotate-6" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="20" stroke-linecap="round" opacity=".12">
+        <circle cx="400" cy="400" r="120"/>
+        <circle cx="400" cy="400" r="220"/>
+        <circle cx="400" cy="400" r="320"/>
+      </g>
+      <g fill="#4F46E5" opacity=".15">
+        <ellipse cx="400" cy="400" rx="60" ry="30"/>
+        <ellipse cx="560" cy="340" rx="30" ry="15"/>
+        <ellipse cx="260" cy="500" rx="26" ry="14"/>
+      </g>
+    </svg>
+  </div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">WHY YOUR CREATIVE<span class="text-purple-400"> MACHINE STALLS</span></h2>
+      <ul class="space-y-4 text-slate-300 text-sm md:text-base">
+        <li><span class="font-semibold text-white">Too many tools, zero memory:</span> brief in docs, assets in Drive, edits in email, insights in dashboards.</li>
+        <li><span class="font-semibold text-white">Expensive iterations:</span> $400–$1,200/video & days of edits—so you test less, learn slower.</li>
+        <li><span class="font-semibold text-white">Performance guesswork:</span> you know what “looked good”, not what moved CAC or ROAS.</li>
+        <li><span class="font-semibold text-white">Creative fatigue is real:</span> Meta/TikTok punish stale ads; refresh cycles are brutal without automation.</li>
+      </ul>
+    </div>
+    <div class="relative">
+      <div class="card mb-8 text-center">
+        <p class="mb-2 text-xs uppercase tracking-widest text-slate-400">THE OLD WAY</p>
+        <img src="https://dummyimage.com/500x220/1e293b/ffffff&text=Copy+Tool+→+Editor+→+Designer+→+Analytics+→+Uploader" alt="old stack" class="mx-auto opacity-80"/>
+      </div>
+      <div class="text-center text-3xl">↓</div>
+      <div class="card mt-8 text-center border-indigo-500/40">
+        <p class="mb-2 text-xs uppercase tracking-widest text-indigo-300">SUPERmaya</p>
+        <p class="text-slate-200 text-sm">One loop: Brief → Generate → Launch → Analyse → (Repeat)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engine" class="py-24 px-6 md:px-12 lg:px-20 reveal">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-14">HOW <span class="text-purple-400">SUPERMAYA</span> WORKS</h2>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 text-center mb-16">
+    <div class="card" id="step-brief"><h3 class="font-semibold mb-2">1. Brief</h3><p class="text-slate-300 text-sm">Drop goals, offers, audience & brand assets. Our AI proposes hooks & angles instantly.</p></div>
+    <div class="card" id="step-generate"><h3 class="font-semibold mb-2">2. Generate</h3><p class="text-slate-300 text-sm">Cinematic video, images, copy. Auto-paced, graded, captioned—ready for feed.</p></div>
+    <div class="card" id="step-launch"><h3 class="font-semibold mb-2">3. Launch</h3><p class="text-slate-300 text-sm">Push to Meta, TikTok, YouTube, Google in one click. Specs handled. Variants multiplied.</p></div>
+    <div class="card" id="step-analyse"><h3 class="font-semibold mb-2">4. Analyse & Refresh</h3><p class="text-slate-300 text-sm">Our engine scores 100+ creative traits vs. KPIs, then auto-refreshes underperformers.</p></div>
+  </div>
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-semibold">What you get today — and where it’s going</h3>
+      <div class="flex items-center space-x-2 text-sm">
+        <span id="todayLabel" class="font-semibold">Today</span>
+        <button id="stackToggle" class="relative w-12 h-6 bg-white/10 rounded-full"><span id="stackThumb" class="absolute top-0.5 left-0.5 w-5 h-5 bg-indigo-500 rounded-full transition-all"></span></button>
+        <span id="futureLabel" class="text-slate-400">Future</span>
+      </div>
+    </div>
+    <div id="stack-today" class="grid md:grid-cols-4 gap-6 text-sm">
+      <div class="card">Conceptualise<br/><span class="text-slate-400">AI brief wizard, persona hooks</span></div>
+      <div class="card">Generate<br/><span class="text-slate-400">Text→video/images, auto edit/grade</span></div>
+      <div class="card">Launch<br/><span class="text-slate-400">Channel specs, bulk upload</span></div>
+      <div class="card">Analyse<br/><span class="text-slate-400">Causal drivers, KPI surrogate</span></div>
+    </div>
+    <div id="stack-future" class="hidden grid md:grid-cols-3 gap-6 text-sm mt-6">
+      <div class="card">Autonomous Creative Director<br/><span class="text-slate-400">Taste modelling, campaign planning</span></div>
+      <div class="card">Adaptive Brand Worlds<br/><span class="text-slate-400">Persistent visual universes</span></div>
+      <div class="card">Self‑Optimising Media Engine<br/><span class="text-slate-400">RL/bandits on ROAS constraints</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-24 px-6 md:px-12 lg:px-20 reveal relative overflow-hidden">
+  <div class="pattern-wrap">
+    <!-- Grid pattern for portfolio -->
+    <svg class="pattern-svg top-[-20vh] left-[-10vw] w-[120vw]" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="1" stroke-opacity=".08">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#9B51E0" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+      </g>
+      <g fill="#4F46E5" opacity=".06">
+        <circle cx="200" cy="150" r="40"/>
+        <circle cx="800" cy="300" r="25"/>
+        <circle cx="1000" cy="100" r="30"/>
+      </g>
+    </svg>
+  </div>
+  
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6"><span class="text-purple-400">SUPERMAYA-GENERATED</span> VIDEO PORTFOLIO</h2>
+      <p class="text-slate-300 text-lg max-w-3xl mx-auto">
+        See Supermaya in action. These high-quality video advertisements were generated entirely by our AI platform, showcasing the cinematic quality and brand-ready output that sets us apart from traditional tools.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Nano Ad -->
+      <div class="card overflow-hidden">
+        <div class="w-full h-64 bg-black rounded-lg mb-4 relative group">
+          <video 
+            class="w-full h-full object-contain rounded-lg cursor-pointer" 
+            preload="metadata"
+            disablepictureinpicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            onclick="this.paused ? this.play() : this.pause()">
+            <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/Nano_ad" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-3 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').paused ? this.closest('.group').querySelector('video').play() : this.closest('.group').querySelector('video').pause()">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-1.5 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <h4 class="text-lg font-semibold text-white mb-2">Nano Professional</h4>
+        <p class="text-slate-300 text-sm">Gel Nail Polish brand featuring 600+ shades - Vegan, HEMA-Free & Cruelty Free nail care products.</p>
+      </div>
+
+      <!-- Tower Ad -->
+      <div class="card overflow-hidden">
+        <div class="w-full h-64 bg-black rounded-lg mb-4 relative group">
+          <video 
+            class="w-full h-full object-contain rounded-lg cursor-pointer" 
+            preload="metadata"
+            disablepictureinpicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            onclick="this.paused ? this.play() : this.pause()">
+            <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/Tower_ad" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-3 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').paused ? this.closest('.group').querySelector('video').play() : this.closest('.group').querySelector('video').pause()">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-1.5 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <h4 class="text-lg font-semibold text-white mb-2">Tower28 Sunscreen</h4>
+        <p class="text-slate-300 text-sm">Beauty product advertisement with lifestyle integration and natural lighting effects.</p>
+      </div>
+
+      <!-- ICICI Ad -->
+      <div class="card overflow-hidden">
+        <div class="w-full h-64 bg-black rounded-lg mb-4 relative group">
+          <video 
+            class="w-full h-full object-cover rounded-lg cursor-pointer" 
+            preload="metadata"
+            disablepictureinpicture
+            controlslist="nodownload nofullscreen noremoteplayback"
+            onclick="playFromStart(this)">
+            <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/icici_ad#t=3" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-3 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); playFromStart(this.closest('.group').querySelector('video'))">
+              <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div class="bg-black/50 rounded-full p-1.5 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <h4 class="text-lg font-semibold text-white mb-2">ICICI Bank - Diwali Car Loan</h4>
+        <p class="text-slate-300 text-sm">Financial services campaign with cultural context and emotional storytelling.</p>
+      </div>
+    </div>
+
+    <div class="mt-16 text-center">
+      <p class="text-slate-400 text-sm mb-6">All videos generated by Supermaya AI in minutes, not weeks</p>
+      <a href="#cta" class="btn-primary only-cta">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="case-studies" class="py-24 px-6 md:px-12 lg:px-20 reveal relative overflow-hidden">
+  <div class="pattern-wrap">
+    <!-- Diagonal lines pattern -->
+    <svg class="pattern-svg top-[-15vh] right-[-15vw] w-[130vw]" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="2" stroke-opacity=".06">
+        <path d="M0 0 L1200 400"/>
+        <path d="M-200 0 L1000 400"/>
+        <path d="M200 0 L1400 400"/>
+        <path d="M-400 0 L800 400"/>
+        <path d="M400 0 L1600 400"/>
+      </g>
+      <g fill="#4F46E5" opacity=".04">
+        <circle cx="300" cy="100" r="20"/>
+        <circle cx="900" cy="250" r="15"/>
+        <circle cx="600" cy="350" r="25"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">REAL RESULTS FROM <span class="text-purple-400">REAL BRANDS</span></h2>
+      <p class="text-slate-300 text-lg max-w-3xl mx-auto">
+        Brands that transformed their marketing with Supermaya AI, achieving dramatic improvements in performance and cost efficiency.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Left Section - HSBC Advertisement -->
+      <div class="space-y-6">
+        <div class="card overflow-hidden">
+          <div class="w-full flex justify-center bg-gradient-to-b from-black/50 to-transparent p-6 mb-4">
+            <div class="aspect-[9/16] w-40 max-w-xs relative group">
+              <video 
+                class="w-full h-full object-cover rounded-lg shadow-lg cursor-pointer" 
+                preload="metadata"
+                disablepictureinpicture
+                controlslist="nodownload nofullscreen noremoteplayback"
+                onclick="playFromStart(this)">
+                <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/HSBC.mp4#t=1" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <div class="bg-black/50 rounded-full p-2 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); playFromStart(this.closest('.group').querySelector('video'))">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <div class="bg-black/50 rounded-full p-1 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-2">
+            <h4 class="text-xl font-bold text-white mb-3 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">HSBC Advertisement</h4>
+            <div class="space-y-3 text-slate-300">
+              <p class="text-base">Professional banking advertisement showcasing HSBC's premium services and global reach.</p>
+              <p class="text-sm text-slate-400">Generated using Supermaya's advanced AI video production capabilities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section - Case Studies -->
+      <div class="space-y-6">
+        <!-- Tower 28 Case Study -->
+        <div class="card group cursor-pointer border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-[1.02]" onclick="window.open('tower28-case-study.html', '_blank')">
+          <div class="flex h-32">
+            <div class="w-1/3 bg-gradient-to-b from-black/50 to-transparent flex items-center justify-center p-2">
+              <div class="aspect-[9/16] w-full max-w-[50px] h-24 relative group">
+                <video 
+                  class="w-full h-full object-cover rounded-md cursor-pointer" 
+                  muted 
+                  preload="metadata"
+                  disablepictureinpicture
+                  controlslist="nodownload nofullscreen noremoteplayback"
+                  onclick="this.paused ? this.play() : this.pause()">
+                  <source src="https://super-maya-website-new.s3.us-east-2.amazonaws.com/Tower_ad" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <div class="bg-black/50 rounded-full p-1 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').paused ? this.closest('.group').querySelector('video').play() : this.closest('.group').querySelector('video').pause()">
+                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="absolute top-0.5 right-0.5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <div class="bg-black/50 rounded-full p-0.5 pointer-events-auto cursor-pointer" onclick="event.stopPropagation(); this.closest('.group').querySelector('video').requestFullscreen()">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-2/3 p-4 flex flex-col justify-center">
+              <h4 class="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Tower 28 Beauty</h4>
+              <p class="text-sm text-slate-300 mb-2">Complete Case Study</p>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-purple-400 group-hover:text-purple-300 transition-colors">View detailed analysis</span>
+                <svg class="w-3 h-3 text-purple-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ECommerce Case Study -->
+        <div class="card cursor-pointer hover:border-slate-600 transition-all duration-300">
+          <div class="p-4">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+              <h4 class="text-lg font-bold text-white">ECommerce Transformation</h4>
+            </div>
+            <p class="text-sm text-slate-300 mb-1">Coming Soon</p>
+            <p class="text-xs text-slate-400">Detailed analysis of e-commerce growth with AI-driven content strategy</p>
+          </div>
+        </div>
+
+        <!-- Gaming Case Study -->
+        <div class="card cursor-pointer hover:border-slate-600 transition-all duration-300">
+          <div class="p-4">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+              <h4 class="text-lg font-bold text-white">Gaming Industry Success</h4>
+            </div>
+            <p class="text-sm text-slate-300 mb-1">Coming Soon</p>
+            <p class="text-xs text-slate-400">Gaming industry breakthrough showcasing AI video innovation at scale</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="models" class="py-24 px-6 md:px-12 lg:px-20 reveal relative overflow-hidden">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg -bottom-20 -left-10 w-[140vw]" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 260 C120 200 240 220 360 260 C480 300 600 340 720 300 C840 260 960 180 1080 210 C1160 230 1200 250 1200 250 L1200 400 L0 400 Z" fill="#4F46E5" opacity=".12"/>
+      <path d="M0 220 C120 180 240 200 360 240 C480 280 600 320 720 280 C840 240 960 160 1080 190 C1160 210 1200 230 1200 230 L1200 400 L0 400 Z" fill="#9B51E0" opacity=".08"/>
+    </svg>
+  </div>
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-14">UNDER THE HOOD</h2>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm relative z-10">
+    <div class="card group"><h3 class="font-semibold mb-2">Creative Director Model</h3><p class="text-slate-300">Understands arcs, pacing, emotional beats—like a human CD.</p><div class="opacity-0 group-hover:opacity-100 transition mt-3 text-xs text-slate-400">Narrative grammars, LoRA/QLoRA, pacing tokens.</div></div>
+    <div class="card group"><h3 class="font-semibold mb-2">Brand World‑Builder</h3><p class="text-slate-300">Your private style/tone checkpoint. Zero drift across assets.</p><div class="opacity-0 group-hover:opacity-100 transition mt-3 text-xs text-slate-400">Few‑shot personalization, identity embeddings.</div></div>
+    <div class="card group"><h3 class="font-semibold mb-2">Performance Brain</h3><p class="text-slate-300">Predicts CTR/ROAS pre‑launch, optimises live with bandits/RL.</p><div class="opacity-0 group-hover:opacity-100 transition mt-3 text-xs text-slate-400">Causal models, surrogate KPI nets, off‑policy RL.</div></div>
+  </div>
+</section>
+
+
+
+<section id="roi" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-visible reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg top-[-10vh] left-1/2 -translate-x-1/2 w-[120vw]" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+      <g fill="#9B51E0" opacity=".06">
+        <rect x="0" y="0" width="1200" height="60"/>
+        <rect x="0" y="120" width="1200" height="40"/>
+        <rect x="0" y="220" width="1200" height="30"/>
+      </g>
+    </svg>
+  </div>
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">RUN THE <span class="text-purple-400">D2C MATH</span></h2>
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-start text-sm relative z-10">
+    <form id="roiForm" class="card space-y-4">
+      <div>
+        <label class="block mb-1">Monthly ad spend ($)</label>
+        <input type="number" id="spend" class="w-full p-2 rounded bg-white/5 border border-white/10" value="50000" />
+      </div>
+      <div>
+        <label class="block mb-1">Video creatives / month</label>
+        <input type="number" id="creatives" class="w-full p-2 rounded bg-white/5 border border-white/10" value="25" />
+      </div>
+      <button type="button" id="calcBtn" class="btn-primary w-full">Calculate</button>
+    </form>
+    <div class="card">
+      <div class="mb-4 flex flex-wrap gap-2 text-xs font-semibold" id="metricTabs">
+        <button class="tab-btn active" data-metric="cost">Creative Cost</button>
+        <button class="tab-btn" data-metric="cac">CAC</button>
+        <button class="tab-btn" data-metric="roas">ROAS</button>
+      </div>
+      <div id="chartsWrapper" class="mb-4 space-y-4">
+        <div id="chart-cost" class="h-[220px]"><canvas id="roiChart" height="200"></canvas></div>
+        <div id="chart-cac"  class="h-[220px] hidden"><canvas id="cacChart" height="200"></canvas></div>
+        <div id="chart-roas" class="h-[220px] hidden"><canvas id="roasChart" height="200"></canvas></div>
+      </div>
+      <div id="roiOutput" class="mt-6 text-slate-300"></div>
+    </div>
+  </div>
+</section>
+
+<section id="security" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-visible">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg inset-0 w-full h-full" viewBox="0 0 800 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="2">
+        <path d="M0 40 H800"/><path d="M0 120 H800"/><path d="M0 200 H800"/><path d="M0 280 H800"/><path d="M0 360 H800"/><path d="M0 440 H800"/><path d="M0 520 H800"/>
+      </g>
+      <g fill="#4F46E5" opacity=".06">
+        <circle cx="80" cy="520" r="26"/>
+        <circle cx="720" cy="80" r="18"/>
+        <circle cx="640" cy="300" r="12"/>
+      </g>
+    </svg>
+  </div>
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 relative z-10"><span class="text-purple-400">TRUST</span>, BY DESIGN</h2>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-sm relative z-10" id="trust-cards">
+    <div class="card text-center py-6"><div class="text-3xl mb-2">🔐</div><h4 class="font-semibold mb-1">Isolated Brand Models</h4><p class="text-slate-300 text-xs">Your data fine‑tunes a private checkpoint. Never mixed, never shared.</p></div>
+    <div class="card text-center py-6"><div class="text-3xl mb-2">🧬</div><h4 class="font-semibold mb-1">Licensed & Synthetic Data</h4><p class="text-slate-300 text-xs">Licensed sources + in‑house synthetic sets—not scraped internet noise.</p></div>
+    <div class="card text-center py-6"><div class="text-3xl mb-2">🧾</div><h4 class="font-semibold mb-1">Provenance & Watermarking</h4><p class="text-slate-300 text-xs">Every asset is traceable. Watermarks & logs keep platforms & partners compliant.</p></div>
+    <div class="card text-center py-6"><div class="text-3xl mb-2">✅</div><h4 class="font-semibold mb-1">SOC‑2 Ready</h4><p class="text-slate-300 text-xs">Audit trails, RBAC, enterprise contracts—security baked in.</p></div>
+  </div>
+</section>
+
+<section id="cta" class="py-24 px-6 md:px-12 lg:px-20 text-center bg-white/5 border-t border-white/10 relative overflow-visible">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg bottom-[-10vh] right-[-10vw] w-[90vw]" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 260 C120 200 240 220 360 260 C480 300 600 340 600 340 L600 400 L0 400 Z" fill="#9B51E0" opacity=".08"/>
+      <path d="M0 220 C120 180 240 200 360 240 C480 280 600 320 600 320 L600 400 L0 400 Z" fill="#4F46E5" opacity=".05"/>
+    </svg>
+  </div>
+  <h2 class="text-3xl md:text-4xl font-bold mb-6 relative z-10">READY TO STOP GUESSING AND <span class="text-purple-400">START SCALING?</span></h2>
+  <p class="text-slate-300 mb-10 max-w-2xl mx-auto relative z-10">Join the early access list. We’ll onboard a limited batch of D2C brands and build with you.</p>
+  <a href="https://calendly.com/sudhansu-supermaya/30min" class="btn-primary only-cta relative z-10">Get Early Access</a>
+</section>
+
+<footer class="bg-[#0b0f1d] text-slate-400 text-xs py-6 px-6 border-t border-white/10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-4">
+    <div>© 2025 Supermaya. All rights reserved.</div>
+    <div class="space-x-4">
+      <a href="#" class="hover:text-white">Privacy</a>
+      <a href="#" class="hover:text-white">Terms</a>
+      <a href="#" class="hover:text-white">Careers</a>
+      <a href="#" class="hover:text-white">Press Kit</a>
+    </div>
+  </div>
+</footer>
+
+<div id="modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[60]">
+  <div class="bg-[#0f172a] max-w-lg w-full rounded-2xl p-8 relative border border-white/10">
+    <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-white">✕</button>
+    <div id="modalContent" class="text-sm text-slate-200 leading-relaxed"></div>
+    <div class="mt-6 text-center"><a href="https://calendly.com/sudhansu-supermaya/30min" class="btn-primary only-cta">Get Early Access</a></div>
+  </div>
+</div>
+
+<script>
+  const HAS_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Function to play video from start regardless of thumbnail timestamp
+  function playFromStart(video) {
+    if (video.paused) {
+      video.currentTime = 0; // Reset to beginning
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+
+  // Reveal animations
+  const revealEls = document.querySelectorAll('.reveal');
+  if (HAS_GSAP && !prefersReduce) {
+    gsap.registerPlugin(ScrollTrigger);
+    revealEls.forEach(el => {
+      gsap.to(el, { opacity:1, y:0, duration:.8, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 80%' } });
+    });
+  } else {
+    const io = new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }}); },{threshold:.2});
+    revealEls.forEach(el=>io.observe(el));
+  }
+
+  // Parallax SVG patterns
+  if (HAS_GSAP && !prefersReduce) {
+    document.querySelectorAll('.pattern-wrap svg').forEach((svg,i)=>{
+      const parent = svg.closest('section');
+      if(!parent) return;
+      gsap.to(svg,{ y:(i%2?-120:120), x:(i%3?-80:80), rotation:(i%2?5:-5), ease:'none', scrollTrigger:{ trigger:parent, start:'top bottom', end:'bottom top', scrub:true }});
+    });
+  }
+
+  // Today/Future toggle
+  const toggle = document.getElementById('stackToggle');
+  const thumb  = document.getElementById('stackThumb');
+  const todayLbl = document.getElementById('todayLabel');
+  const futureLbl= document.getElementById('futureLabel');
+  const todayView= document.getElementById('stack-today');
+  const futureView=document.getElementById('stack-future');
+  let future=false;
+  if(toggle) toggle.onclick=()=>{
+    future=!future;
+    if(future){
+      if(HAS_GSAP && !prefersReduce){ gsap.to(thumb,{x:24,duration:.25}); } else { thumb.style.transform='translateX(24px)'; }
+      todayLbl.classList.remove('font-semibold');
+      futureLbl.classList.add('font-semibold','text-white');
+      todayView.classList.add('hidden');
+      futureView.classList.remove('hidden');
+    }else{
+      if(HAS_GSAP && !prefersReduce){ gsap.to(thumb,{x:0,duration:.25}); } else { thumb.style.transform='translateX(0)'; }
+      todayLbl.classList.add('font-semibold');
+      futureLbl.classList.remove('font-semibold','text-white');
+      futureView.classList.add('hidden');
+      todayView.classList.remove('hidden');
+    }
+  };
+
+  // Slider
+  const slider = document.getElementById('slider');
+  let slideIndex=0;
+  function moveSlider(){ if(slider) slider.style.transform=`translateX(-${slideIndex*100}%)`; }
+  const prevBtn=document.getElementById('prevBtn');
+  const nextBtn=document.getElementById('nextBtn');
+  if(prevBtn) prevBtn.onclick=()=>{ slideIndex=(slideIndex+2)%3; moveSlider(); };
+  if(nextBtn) nextBtn.onclick=()=>{ slideIndex=(slideIndex+1)%3; moveSlider(); };
+
+  // Modal
+  const modal=document.getElementById('modal');
+  const modalContent=document.getElementById('modalContent');
+  const stories={
+    beauty:"<h3 class='font-semibold text-lg mb-3'>Beauty Brand</h3><p>55 assets in 14 days for $740 (vs ~$59k). CTR +132%, ROAS 3.8×. Time-to-launch: under 1 hour.</p>",
+    fintech:"<h3 class='font-semibold text-lg mb-3'>Fintech App</h3><p>CPA −41%, sign‑ups +28%. Persona-level variants auto-rotated weekly.</p>",
+    apparel:"<h3 class='font-semibold text-lg mb-3'>D2C Apparel</h3><p>Production −96%, TikTok ER 2.3×, revenue +19% MoM. Creative fatigue solved with micro-hooks.</p>"
+  };
+  window.openModal=function(k){ if(!modal) return; modalContent.innerHTML=stories[k]||''; modal.classList.remove('hidden'); modal.classList.add('flex'); };
+  window.closeModal=function(){ if(modal) modal.classList.add('hidden'); };
+
+  // Charts
+  const roiCtx  = document.getElementById('roiChart');
+  const cacCtx  = document.getElementById('cacChart');
+  const roasCtx = document.getElementById('roasChart');
+  let costChart=null,cacChart=null,roasChart=null;
+
+  if(roiCtx){
+    costChart=new Chart(roiCtx,{type:'bar',data:{labels:['Current','Supermaya'],datasets:[{label:'Creative Cost ($)',data:[0,0],backgroundColor:'rgba(203,213,225,0.6)'}]},options:{responsive:true,scales:{y:{beginAtZero:true,title:{display:true,text:'$ Cost'},grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#ccc'}}},plugins:{legend:{labels:{color:'#ccc'}}}}});
+  }
+  if(cacCtx){
+    cacChart=new Chart(cacCtx,{type:'bar',data:{labels:['Current','Supermaya'],datasets:[{label:'CAC ($)',data:[0,0],backgroundColor:'rgba(155,81,224,0.6)'}]},options:{responsive:true,scales:{y:{beginAtZero:true,title:{display:true,text:'CAC ($)'},grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#ccc'}}},plugins:{legend:{labels:{color:'#ccc'}}}}});
+  }
+  if(roasCtx){
+    roasChart=new Chart(roasCtx,{type:'line',data:{labels:['Current','Supermaya'],datasets:[{label:'ROAS (×)',data:[0,0],borderColor:'rgba(79,70,229,0.9)',backgroundColor:'rgba(79,70,229,0.15)',borderWidth:2,pointRadius:3,tension:0.35,fill:true}]},options:{responsive:true,scales:{y:{beginAtZero:true,title:{display:true,text:'ROAS (×)'},grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#ccc'}}},plugins:{legend:{labels:{color:'#ccc'}}}}});
+  }
+
+  // Tabs
+  const tabButtons=document.querySelectorAll('.tab-btn');
+  const wrappers={ cost:document.getElementById('chart-cost'), cac:document.getElementById('chart-cac'), roas:document.getElementById('chart-roas') };
+  function showMetric(m){ Object.values(wrappers).forEach(w=>w&&w.classList.add('hidden')); if(wrappers[m]) wrappers[m].classList.remove('hidden'); tabButtons.forEach(b=>b.classList.toggle('active',b.dataset.metric===m)); }
+  showMetric('cost');
+  tabButtons.forEach(b=>b.addEventListener('click',()=>showMetric(b.dataset.metric)));
+
+  // Calculator
+  const calcBtn=document.getElementById('calcBtn');
+  if(calcBtn) calcBtn.onclick=()=>{
+    const spend=+document.getElementById('spend').value||0;
+    const creatives=+document.getElementById('creatives').value||0;
+
+    const CURRENT_COST_PER=900;   // midpoint of $600–$1,500
+    const SUPER_COST_PER=40;      // Supermaya cost
+    const BASE_ROAS=2.0;          // baseline ROAS
+    const ROAS_FACTOR=1.8;        // +80% lift
+    const BASE_CAC=35;            // baseline CAC
+    const CAC_FACTOR=0.7;         // -30%
+
+    const creativeCostCurrent=creatives*CURRENT_COST_PER;
+    const creativeCostSM=creatives*SUPER_COST_PER;
+    const roasCurrent=BASE_ROAS;
+    const roasSM=BASE_ROAS*ROAS_FACTOR;
+    const cacCurrent=BASE_CAC;
+    const cacSM=BASE_CAC*CAC_FACTOR;
+
+    if(costChart){costChart.data.datasets[0].data=[creativeCostCurrent,creativeCostSM];costChart.update();}
+    if(cacChart){cacChart.data.datasets[0].data=[cacCurrent,cacSM];cacChart.update();}
+    if(roasChart){roasChart.data.datasets[0].data=[roasCurrent,roasSM];roasChart.update();}
+
+    const save=creativeCostCurrent-creativeCostSM;
+    const revCur=spend*roasCurrent;
+    const revSM=spend*roasSM;
+    const extraRev=revSM-revCur;
+
+    document.getElementById('roiOutput').innerHTML = `
+      <p>Creative spend now: <span class='gold'>$${creativeCostCurrent.toLocaleString()}</span>/mo → With Supermaya: <span class='gold'>$${creativeCostSM.toLocaleString()}</span> (save $${save.toLocaleString()}).</p>
+      <p>CAC drop: <span class='gold'>$${cacCurrent.toFixed(2)}</span> → <span class='gold'>$${cacSM.toFixed(2)}</span>.</p>
+      <p>ROAS uplift: <span class='gold'>${roasCurrent.toFixed(1)}× → ${roasSM.toFixed(1)}×</span>. Same $${spend.toLocaleString()} could yield ~$${revSM.toLocaleString()} revenue (+$${extraRev.toLocaleString()}).</p>`;
+  };
+
+  // --- Tiny sanity tests (dev only) ---
+  console.assert(document.getElementById('roi') !== null, 'ROI section missing');
+  console.assert(typeof Chart === 'function', 'Chart.js not loaded');
+
+  // Hide video controls in fullscreen
+  document.addEventListener('fullscreenchange', function() {
+    const fullscreenElement = document.fullscreenElement;
+    if (fullscreenElement && fullscreenElement.tagName === 'VIDEO') {
+      fullscreenElement.controls = false;
+      fullscreenElement.style.outline = 'none';
+      fullscreenElement.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+      fullscreenElement.setAttribute('disablepictureinpicture', '');
+    }
+  });
+
+  document.addEventListener('webkitfullscreenchange', function() {
+    const fullscreenElement = document.webkitFullscreenElement;
+    if (fullscreenElement && fullscreenElement.tagName === 'VIDEO') {
+      fullscreenElement.controls = false;
+      fullscreenElement.style.outline = 'none';
+      fullscreenElement.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+      fullscreenElement.setAttribute('disablepictureinpicture', '');
+    }
+  });
+
+  // Add fullscreen event listeners to all videos
+  document.querySelectorAll('video').forEach(video => {
+    // Disable picture-in-picture and download on all videos
+    video.setAttribute('disablepictureinpicture', '');
+    video.setAttribute('controlslist', 'nodownload nofullscreen noremoteplaybook');
+    
+    video.addEventListener('fullscreenchange', function() {
+      if (document.fullscreenElement === video) {
+        video.controls = false;
+        video.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+      }
+    });
+    
+    video.addEventListener('webkitfullscreenchange', function() {
+      if (document.webkitFullscreenElement === video) {
+        video.controls = false;
+        video.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback');
+      }
+    });
+
+    // Override context menu to prevent download
+    video.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable right-click context menu
+    video.oncontextmenu = function() {
+      return false;
+    };
+  });
+</script>
+</body>
 </html>
+
