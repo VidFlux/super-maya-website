@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Info – Supermaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Syncopate';
+      src: url('./Syncopate-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Syncopate';
+      src: url('./Syncopate-Regular.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Teachers';
+      src: url('./Teachers-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Teachers','Inter',sans-serif}
+    h1, h2 {font-family:'Syncopate','Inter',sans-serif}
+    h3, h4, h5, h6 {font-family:'Teachers','Inter',sans-serif}
+    .reveal{opacity:0;transform:translateY(24px)}
+    .card{background:rgba(255,255,255,.05);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.5rem}
+    .gradient-bg{background:radial-gradient(circle at top left,#1A1B2D 0%,#0F141F 60%,#0B0E18 100%)}
+    .btn-primary{background:#9B51E0;color:#fff;padding:.75rem 1.5rem;border-radius:9999px;font-weight:600;transition:.2s}
+    .btn-primary:hover{background:#8E44AD}
+    .gold{color:#d1b583}
+    .pattern-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .pattern-svg{position:absolute;mix-blend-mode:screen;opacity:.12}
+    .syncopate-heading{font-family:'Syncopate','Inter',sans-serif}
+    .syncopate-bold-heading{font-family:'Syncopate','Inter',sans-serif;font-weight:bold}
+    .teachers-text{font-family:'Teachers','Inter',sans-serif}
+    @media(min-width:768px){.pattern-svg{opacity:.1}}
+    .nav-link{padding:.5rem 1rem;border-radius:9999px;transition:.15s;color:#ccc}
+    .nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+    .nav-link.active{background:#9B51E0;color:#fff}
+    .section-link{display:inline-block;padding:.4rem 1rem;margin:.25rem;border-radius:9999px;background:rgba(255,255,255,.08);color:#ccc;transition:.15s;text-decoration:none}
+    .section-link:hover{background:rgba(155,81,224,.3);color:#fff}
+    input,textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;padding:.75rem;color:#fff;width:100%;transition:.2s}
+    input:focus,textarea:focus{outline:none;border-color:#9B51E0;background:rgba(255,255,255,.08)}
+    label{display:block;margin-bottom:.5rem;color:#e2e8f0;font-weight:500}
+    .success-message{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80;padding:1rem;border-radius:.5rem;margin-top:1rem}
+    .error-message{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;padding:1rem;border-radius:.5rem;margin-top:1rem}
+  </style>
+</head>
+<body class="gradient-bg text-white selection:bg-purple-400/60">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-[#1A1B2D]/80 backdrop-blur border-b border-purple-700/30">
+  <div class="max-w-7xl mx-auto py-4 px-6 flex justify-between items-center">
+    <a href="index.html" class="text-xl font-bold tracking-wide syncopate-heading">SUPERMAYA</a>
+    <div class="hidden md:flex items-center gap-2">
+      <a href="#about" class="section-link">About</a>
+      <a href="#services" class="section-link">Services</a>
+      <a href="#contact" class="section-link">Contact</a>
+      <a href="#refund" class="section-link">Refund Policy</a>
+    </div>
+    <a href="index.html" class="btn-primary text-sm">Back to Home</a>
+  </div>
+</header>
+
+<!-- ABOUT US SECTION -->
+<section id="about" class="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-20 relative overflow-hidden reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg -top-32 -left-40 w-[160vw]" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="g1" cx="15%" cy="40%" r="80%">
+          <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.9"/>
+          <stop offset="60%" stop-color="#9B51E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".35">
+        <path d="M30 120 C140 60 220 200 340 140 S540 40 640 160 820 220 940 120"/>
+        <path d="M-20 300 C120 260 220 420 360 360 S600 240 760 360 980 420 1180 300"/>
+        <path d="M60 520 C200 500 300 560 420 520 S660 460 820 520 1040 560 1200 480"/>
+      </g>
+      <circle cx="280" cy="240" r="220" fill="url(#g1)"/>
+      <g fill="#9B51E0" opacity=".4">
+        <circle cx="960" cy="90" r="30"/>
+        <circle cx="1040" cy="160" r="18"/>
+        <circle cx="880" cy="180" r="22"/>
+      </g>
+    </svg>
+  </div>
+  
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-6 syncopate-bold-heading">ABOUT <span class="text-purple-400">SUPERMAYA</span></h1>
+      <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto teachers-text">
+        Empowering D2C marketers with AI-powered cinematic video generation that transforms creative production
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="card text-center">
+        <div class="text-4xl mb-4">🎯</div>
+        <h3 class="text-xl font-bold mb-3">Our Mission</h3>
+        <p class="text-slate-300 text-sm">
+          To democratize high-quality video production by making cinematic AI technology accessible to businesses and creators of all sizes. We believe every brand deserves professional-grade creative content.
+        </p>
+      </div>
+
+      <div class="card text-center">
+        <div class="text-4xl mb-4">💎</div>
+        <h3 class="text-xl font-bold mb-3">Our Values</h3>
+        <p class="text-slate-300 text-sm">
+          Innovation, quality, and customer success drive everything we do. We believe in transparency, ethical AI development, and building lasting relationships with our clients.
+        </p>
+      </div>
+
+      <div class="card text-center">
+        <div class="text-4xl mb-4">👥</div>
+        <h3 class="text-xl font-bold mb-3">Our Team</h3>
+        <p class="text-slate-300 text-sm">
+          A passionate team of AI researchers, video production experts, and engineers dedicated to pushing creative boundaries and solving real marketing challenges.
+        </p>
+      </div>
+    </div>
+
+    <div class="card max-w-4xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4 text-center">Why Supermaya?</h3>
+      <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-300">
+        <div>
+          <p class="mb-3">
+            <span class="text-purple-400 font-semibold">Founded in 2024</span>, Supermaya emerged from a simple observation: D2C marketers were drowning in creative fatigue, spending thousands on production while struggling to keep up with platform demands.
+          </p>
+          <p>
+            We built an AI Operating System that doesn't just generate videos—it understands your brand, learns from performance data, and continuously optimizes your creative output.
+          </p>
+        </div>
+        <div>
+          <p class="mb-3">
+            Our platform has already helped brands <span class="gold">reduce production costs by 98%</span>, <span class="gold">launch 10-60× faster</span>, and achieve <span class="gold">2-3× lift in CTR/ROAS</span>.
+          </p>
+          <p>
+            We're not just another AI tool—we're your creative partner, built by marketers who understand the pressure of CAC, ROAS, and creative refresh cycles.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg top-[-15vh] left-[-15vw] w-[130vw]" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="1" stroke-opacity=".06">
+        <path d="M0 100 L1200 100"/>
+        <path d="M0 200 L1200 200"/>
+        <path d="M0 300 L1200 300"/>
+      </g>
+      <g fill="#4F46E5" opacity=".04">
+        <circle cx="200" cy="150" r="30"/>
+        <circle cx="1000" cy="250" r="25"/>
+        <circle cx="600" cy="100" r="20"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 syncopate-bold-heading">OUR <span class="text-purple-400">SERVICES</span></h2>
+      <p class="text-lg text-slate-300 max-w-3xl mx-auto teachers-text">
+        Professional-grade AI video generation tools designed for modern D2C marketers
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="card group hover:border-purple-500/50 transition-all duration-300">
+        <div class="text-4xl mb-4">✨</div>
+        <h3 class="text-2xl font-bold mb-3">AI Video Generation</h3>
+        <p class="text-slate-300 mb-4">
+          Transform your ideas into stunning cinematic videos using our state-of-the-art AI. Simply describe your vision, and watch it come to life with professional quality.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Text-to-video generation</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Multiple AI models (Runway, Luma, Kling)</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>HD & 4K output options</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Cinematic color grading</li>
+        </ul>
+      </div>
+
+      <div class="card group hover:border-purple-500/50 transition-all duration-300">
+        <div class="text-4xl mb-4">🎬</div>
+        <h3 class="text-2xl font-bold mb-3">Cinematic Ads</h3>
+        <p class="text-slate-300 mb-4">
+          Create professional advertising content with cinematic quality. Perfect for social media campaigns, product launches, and brand storytelling.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Brand-aligned visuals</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Multi-scene storytelling</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Professional voiceovers</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Auto-generated captions</li>
+        </ul>
+      </div>
+
+      <div class="card group hover:border-purple-500/50 transition-all duration-300">
+        <div class="text-4xl mb-4">🎨</div>
+        <h3 class="text-2xl font-bold mb-3">Brand Asset Integration</h3>
+        <p class="text-slate-300 mb-4">
+          Upload your brand assets and we'll seamlessly integrate them into your videos. Maintain brand consistency across all content.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Logo integration</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Color scheme matching</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Asset library storage</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Brand style checkpoints</li>
+        </ul>
+      </div>
+
+      <div class="card group hover:border-purple-500/50 transition-all duration-300">
+        <div class="text-4xl mb-4">📊</div>
+        <h3 class="text-2xl font-bold mb-3">Performance Analytics</h3>
+        <p class="text-slate-300 mb-4">
+          Our AI doesn't just create—it learns. Track performance, understand what works, and let our system auto-optimize your creative strategy.
+        </p>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>CTR/ROAS prediction</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Creative trait analysis</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Auto-refresh underperformers</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Causal performance drivers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mt-12 max-w-4xl mx-auto bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border-purple-500/30">
+      <h3 class="text-xl font-bold mb-3 text-center">Complete Creative OS</h3>
+      <p class="text-slate-300 text-center text-sm">
+        Supermaya isn't just a tool—it's your complete creative operating system. From brief to launch to optimization, we handle the entire creative workflow so you can focus on strategy and growth.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT US SECTION -->
+<section id="contact" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg top-0 right-[-20vw] w-[120vw] rotate-6" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#9B51E0" stroke-width="20" stroke-linecap="round" opacity=".12">
+        <circle cx="400" cy="400" r="120"/>
+        <circle cx="400" cy="400" r="220"/>
+        <circle cx="400" cy="400" r="320"/>
+      </g>
+      <g fill="#4F46E5" opacity=".15">
+        <ellipse cx="400" cy="400" rx="60" ry="30"/>
+        <ellipse cx="560" cy="340" rx="30" ry="15"/>
+        <ellipse cx="260" cy="500" rx="26" ry="14"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 syncopate-bold-heading">CONTACT <span class="text-purple-400">US</span></h2>
+      <p class="text-lg text-slate-300 max-w-3xl mx-auto teachers-text">
+        Have a question or need support? We'd love to hear from you.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div class="card flex flex-col">
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <span class="text-2xl">📧</span> Send us a message
+        </h3>
+        <form id="contactForm" class="flex flex-col flex-grow">
+          <div class="space-y-4 flex-grow">
+            <div>
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required minlength="2" placeholder="John Doe" class="p-2"/>
+            </div>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com" class="p-2" />
+            </div>
+            <div>
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required minlength="5" placeholder="How can we help?" class="p-2" />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required minlength="10" rows="5" placeholder="Tell us more about your inquiry..." class="p-2"></textarea>
+            </div>
+          </div>
+          <div class="mt-6">
+            <button type="submit" class="btn-primary w-full" id="submitBtn">
+              Send Message
+            </button>
+            <div id="formMessage"></div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-6">
+        <div class="card">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">📧</div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Email Us</h4>
+              <p class="text-slate-300 text-sm mb-2">For general inquiries and support</p>
+              <a href="mailto:support@supermaya.ai" class="text-purple-400 hover:text-purple-300">support@supermaya.ai</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">📞</div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Call Us</h4>
+              <p class="text-slate-300 text-sm mb-2">Monday - Friday, 9am - 6pm IST</p>
+              <a href="tel:+918384956904" class="text-purple-400 hover:text-purple-300">+91-8384956904</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="flex items-start gap-4">
+            <div class="text-4xl">📍</div>
+            <div>
+              <h4 class="font-bold text-lg mb-2">Visit Us</h4>
+              <p class="text-slate-300 text-sm">
+                Supermaya AI Technologies<br/>
+                Bangalore, Karnataka<br/>
+                India
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border-purple-500/30">
+          <h4 class="font-bold text-lg mb-2">Need Immediate Help?</h4>
+          <p class="text-slate-300 text-sm mb-4">
+            Book a 30-minute call with our team to discuss your creative needs and see Supermaya in action.
+          </p>
+          <a href="https://calendly.com/sudhansu-supermaya/30min" class="btn-primary inline-block">Schedule a Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFUND POLICY SECTION -->
+<section id="refund" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden reveal">
+  <div class="pattern-wrap">
+    <svg class="pattern-svg -bottom-20 -left-10 w-[140vw]" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 260 C120 200 240 220 360 260 C480 300 600 340 720 300 C840 260 960 180 1080 210 C1160 230 1200 250 1200 250 L1200 400 L0 400 Z" fill="#4F46E5" opacity=".12"/>
+      <path d="M0 220 C120 180 240 200 360 240 C480 280 600 320 720 280 C840 240 960 160 1080 190 C1160 210 1200 230 1200 230 L1200 400 L0 400 Z" fill="#9B51E0" opacity=".08"/>
+    </svg>
+  </div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 syncopate-bold-heading">CANCELLATION & <span class="text-purple-400">REFUND POLICY</span></h2>
+      <p class="text-lg text-slate-300 max-w-3xl mx-auto teachers-text">
+        Clear and fair policies for your peace of mind
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <div class="card">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">💳</div>
+          <div>
+            <h3 class="text-xl font-bold mb-3">Credit-Based System</h3>
+            <p class="text-slate-300 text-sm">
+              Supermaya operates on a prepaid credit system. Credits are used to generate videos and access premium features. <span class="text-purple-400 font-semibold">Credits do not expire</span> and remain in your account until used, giving you complete flexibility.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">🔄</div>
+          <div>
+            <h3 class="text-xl font-bold mb-3">Refund Eligibility</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              As a digital service provider, refunds are generally not available once credits have been purchased and used. However, we may consider refund requests in the following cases:
+            </p>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="w-2 h-2 rounded-full bg-purple-400 mt-1.5 flex-shrink-0"></span>
+                <span><span class="font-semibold text-white">Technical issues preventing service use:</span> If you experience technical problems that prevent you from using our service, and we cannot resolve them within 7 days of purchase, you may be eligible for a full refund.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-2 h-2 rounded-full bg-purple-400 mt-1.5 flex-shrink-0"></span>
+                <span><span class="font-semibold text-white">Duplicate or incorrect charges:</span> If you were charged multiple times for the same purchase or charged an incorrect amount, notify us within 48 hours for a full refund of the duplicate/excess amount.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-2 h-2 rounded-full bg-purple-400 mt-1.5 flex-shrink-0"></span>
+                <span><span class="font-semibold text-white">Unused credits with account deletion:</span> If you request account deletion and have unused credits, we may issue a partial refund based on the remaining balance and our assessment.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">📝</div>
+          <div>
+            <h3 class="text-xl font-bold mb-3">How to Request a Refund</h3>
+            <p class="text-slate-300 text-sm mb-3">
+              To request a refund, please contact our support team at <a href="mailto:support@supermaya.ai" class="text-purple-400 hover:text-purple-300 font-semibold">support@supermaya.ai</a> with the following information:
+            </p>
+            <ul class="space-y-2 text-sm text-slate-300 mb-4">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Your account email address</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Order/transaction ID</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Detailed reason for the refund request</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Any supporting documentation (screenshots, error messages, etc.)</li>
+            </ul>
+            <p class="text-slate-300 text-sm">
+              We will review your request within <span class="text-purple-400 font-semibold">3-5 business days</span> and respond with our decision.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">⏱️</div>
+          <div>
+            <h3 class="text-xl font-bold mb-3">Refund Processing Time</h3>
+            <p class="text-slate-300 text-sm">
+              Approved refunds will be processed within <span class="text-purple-400 font-semibold">7-10 business days</span> through the original payment method. Depending on your bank or payment provider, it may take an additional 3-5 business days for the refund to appear in your account.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex items-start gap-4">
+          <div class="text-4xl">⚖️</div>
+          <div>
+            <h3 class="text-xl font-bold mb-3">Partial Refunds</h3>
+            <p class="text-slate-300 text-sm">
+              In cases where you have used some credits before requesting a refund, we may issue a <span class="text-purple-400 font-semibold">partial refund</span> based on:
+            </p>
+            <ul class="space-y-2 text-sm text-slate-300 mt-3">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>The number of credits remaining in your account</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>The time elapsed since purchase</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>The nature of the refund request</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-gradient-to-r from-amber-900/20 to-orange-900/20 border-amber-500/30">
+        <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+          <span class="text-2xl">⚠️</span> Important Notes
+        </h4>
+        <ul class="space-y-2 text-sm text-slate-300">
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0"></span>
+            <span>Refunds are processed at our discretion and are not guaranteed for all requests.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0"></span>
+            <span>Once a video has been generated and downloaded, those credits are considered used and non-refundable.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0"></span>
+            <span>Subscription cancellations do not automatically trigger refunds. Please review our subscription terms separately.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0"></span>
+            <span>We reserve the right to refuse refund requests that we determine to be fraudulent or abusive.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border-purple-500/30">
+        <h4 class="font-bold text-lg mb-2">Questions About Our Refund Policy?</h4>
+        <p class="text-slate-300 text-sm mb-4">
+          If you have any questions about our refund policy or need clarification, please don't hesitate to reach out to our support team.
+        </p>
+        <a href="#contact" class="text-purple-400 hover:text-purple-300 font-semibold text-sm">Contact Support →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-[#0b0f1d] text-slate-400 text-xs py-6 px-6 border-t border-white/10">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-4">
+    <div>© 2025 Supermaya. All rights reserved.</div>
+    <div class="space-x-4">
+      <a href="#about" class="hover:text-white">About Us</a>
+      <a href="#services" class="hover:text-white">Services</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+      <a href="#refund" class="hover:text-white">Refund Policy</a>
+      <a href="index.html" class="hover:text-white">Home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const HAS_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reveal animations
+  const revealEls = document.querySelectorAll('.reveal');
+  if (HAS_GSAP && !prefersReduce) {
+    gsap.registerPlugin(ScrollTrigger);
+    revealEls.forEach(el => {
+      gsap.to(el, { opacity:1, y:0, duration:.8, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 80%' } });
+    });
+  } else {
+    const io = new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity=1; e.target.style.transform='translateY(0)'; }}); },{threshold:.2});
+    revealEls.forEach(el=>io.observe(el));
+  }
+
+  // Parallax SVG patterns
+  if (HAS_GSAP && !prefersReduce) {
+    document.querySelectorAll('.pattern-wrap svg').forEach((svg,i)=>{
+      const parent = svg.closest('section');
+      if(!parent) return;
+      gsap.to(svg,{ y:(i%2?-120:120), x:(i%3?-80:80), rotation:(i%2?5:-5), ease:'none', scrollTrigger:{ trigger:parent, start:'top bottom', end:'bottom top', scrub:true }});
+    });
+  }
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.section-link');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.pageYOffset >= sectionTop - 200) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Contact form submission
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    formMessage.innerHTML = '';
+
+    try {
+      // Replace this URL with your actual backend endpoint
+      const response = await fetch('http://localhost:8000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        formMessage.innerHTML = '<div class="success-message">✓ Message sent successfully! We\'ll get back to you soon.</div>';
+        contactForm.reset();
+      } else {
+        formMessage.innerHTML = `<div class="error-message">✗ ${data.message || 'Failed to send message. Please try again.'}</div>`;
+      }
+    } catch (error) {
+      formMessage.innerHTML = '<div class="error-message">✗ An error occurred. Please try emailing us directly at support@supermaya.ai</div>';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>
+</body>
+</html>
